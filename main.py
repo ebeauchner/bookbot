@@ -1,11 +1,14 @@
 import sys
+from stats import get_word_count
 
 if len(sys.argv) != 2:
     print("Usage: python main.py <path_to_book>")
-    sys.exit(1)
+    sys.exit(0)
 
 with open(sys.argv[1]) as f:
     file_contents = f.read()
+
+num_words = get_word_count(file_contents)
 words_list = file_contents.split()
 words_list_length = len(words_list)
 file_contents_lower = file_contents.lower()
@@ -21,7 +24,7 @@ ordered_count = dict(sorted(letter_count.items(), reverse=True, key=lambda item:
 
 
 print("--- Begin report of books/frankenstein.txt ---")
-print(f"{words_list_length} words found in the document\n")
+print(f"{num_words} words found in the document\n")
 for item in ordered_count:
-    print(f"The '{item}' character was found {letter_count[item]} times")
+    print(f"{item}: {letter_count[item]}")
 print("--- End report ---")

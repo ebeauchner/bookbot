@@ -1,4 +1,10 @@
-with open("/Users/ericbeauchner/workspace/github.com/ebeauchner/bookbot/books/frankenstein.txt") as f:
+import sys
+
+if len(sys.argv) != 2:
+    print("Usage: python main.py <path_to_book>")
+    sys.exit(1)
+
+with open(sys.argv[1]) as f:
     file_contents = f.read()
 words_list = file_contents.split()
 words_list_length = len(words_list)
